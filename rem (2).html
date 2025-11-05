@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A</title>
+    <link rel="stylesheet" href="./static/style.css">
+    <script src="./static/vue.global.js"></script>
+    <script src="./static/util.js"></script>
+</head>
+<body>
+<!-- 音乐标签：去掉autoplay，添加id方便JS控制 -->
+<audio id="bgMusic" src="./static/rem/lyt/2PM&尹恩惠-Tik Tok.mp3" loop preload="auto">
+    您的浏览器不支持音频播放
+</audio>
+
+<!-- 点击触发播放的按钮（可自定义样式） -->
+<button style="position: fixed; top: 20px; left: 20px; z-index: 9999; padding: 10px 20px; font-size: 16px;" onclick="playMusic()">
+        点击播放背景音乐
+</button>
+
+<div class="top">
+    <img src="./1.png" height=100% alt="" />
+</div>
+<div id="app">
+    <div v-for="(column,i) of columns" :id="column.id" class="column">
+        <img v-for="src of column.imgs" :src="src">
+    </div>
+</div>
+
+<script>
+// 播放音乐的函数
+function playMusic() {
+    const audio = document.getElementById('bgMusic');
+    audio.play().catch(err => {
+        console.log('播放失败：', err); // 若有错误，可在控制台查看
+    });
+    // 点击后隐藏按钮（可选）
+    event.target.style.display = 'none';
+}
+</script>
+<script src="./static/rem.js"></script>
+
+</html>
